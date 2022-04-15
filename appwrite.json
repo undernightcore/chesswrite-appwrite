@@ -1,0 +1,224 @@
+{
+    "projectId": "chess",
+    "projectName": "Chess",
+    "collections": [
+        {
+            "$id": "matches",
+            "$read": [
+                "role:all"
+            ],
+            "$write": [],
+            "name": "matches",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "status",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "elements": [
+                        "pending",
+                        "ongoing",
+                        "finished"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                {
+                    "key": "board",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 1024,
+                    "default": null
+                },
+                {
+                    "key": "white",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "black",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "turn",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "winner",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "players-and-status",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "white",
+                        "black",
+                        "status"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "friends",
+            "$read": [
+                "role:all"
+            ],
+            "$write": [],
+            "name": "friends",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "user1",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "user2",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "status",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "elements": [
+                        "pending",
+                        "accepted"
+                    ],
+                    "format": "enum",
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "users-and-status",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "user1",
+                        "user2",
+                        "status"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC",
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "users",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "user1",
+                        "user2"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
+        }
+    ],
+    "functions": [
+        {
+            "$id": "623b53d22e4ab06e9f4a",
+            "name": "acceptMatchInvitation ",
+            "runtime": "node-16.0",
+            "path": "functions/acceptMatchInvitation",
+            "entrypoint": "src/index.js",
+            "execute": ["role:member"],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        },
+	{
+            "$id": "623b53c744cb379e87bb",
+            "name": "sendMatchInvitation",
+            "runtime": "node-16.0",
+            "path": "functions/sendMatchInvitation",
+            "entrypoint": "src/index.js",
+            "execute": ["role:member"],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        },
+	{
+            "$id": "623b53a8e82c6b90c479",
+            "name": "acceptFriendInvitation",
+            "runtime": "node-16.0",
+            "path": "functions/acceptFriendInvitation",
+            "entrypoint": "src/index.js",
+            "execute": ["role:member"],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        },
+        {
+            "$id": "623b5382c84e8ec006ec",
+            "name": "sendFriendInvitation",
+            "runtime": "node-16.0",
+            "path": "functions/sendFriendInvitation",
+            "entrypoint": "src/index.js",
+            "execute": ["role:member"],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        },
+	{
+            "$id": "6238d787cfea4d6a6edb",
+            "name": "movePiece",
+            "runtime": "node-16.0",
+            "path": "functions/movePiece",
+            "entrypoint": "src/index.js",
+            "execute": ["role:member"],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}
